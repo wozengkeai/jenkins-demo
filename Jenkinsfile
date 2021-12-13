@@ -1,4 +1,4 @@
-node {
+node('jenkins-jnlp') {
     //stage('Clone') {
       //echo "1.Clone Stage"
 	  //git url: "https://github.com/cnych/jenkins-demo.git"
