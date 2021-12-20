@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins-demo
-  namespace: default
+  namespace: jenkins-demo
 spec:
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: jenkins-demo
