@@ -11,14 +11,14 @@ node('jenkins-jnlp') {
     }
     stage('Build') {
       echo "3.Build Docker Image Stage"
-	  sh "docker build -t 192.168.100.51:30003/jenkins/jenkins-demo:${build_tag} ."
+	  sh "docker build -t 192.168.0.104:30003/jenkins/jenkins-demo:${build_tag} ."
     }
     stage('Push') {
       echo "4.Push Docker Image Stage"
 	  withCredentials([usernamePassword(credentialsId: 'dockerHarbor', passwordVariable: 'dockerHarborValue', usernameVariable: 'dockerHarborUser')]) {
 	    //sh "pwd"
         sh "echo '${dockerHarborValue}' | docker login 192.168.0.104:30003 -u ${dockerHarborUser} --password-stdin "
-        sh "docker push 192.168.100.51:30003/jenkins/jenkins-demo:${build_tag}"
+        sh "docker push 192.168.0.104:30003/jenkins/jenkins-demo:${build_tag}"
 		}
     }
     stage('YAML') {
